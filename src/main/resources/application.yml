@@ -1,0 +1,16 @@
+server:
+  port: ${PORT:8686}
+spring:
+  application:
+    name: consulta.cep
+  main:
+    allow-bean-definition-overriding: true
+
+feign:
+  client:
+    config:
+      consulta-cep:
+        url: viacep.com.br/ws
+
+
+
