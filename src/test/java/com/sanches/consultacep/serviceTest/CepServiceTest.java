@@ -53,6 +53,15 @@ public class CepServiceTest {
     }
 
     @Test
+    public void testBuscaUmCepComAQuantidadeDeCaracteresMenorQueOEsperado(){
+        CepRequest cepRequest = new CepRequest("1513826");
+        BadRequestException exception = assertThrows(BadRequestException.class, () -> {
+            cepService.buscarCepValido(cepRequest);
+        });
+        assertEquals(Constants.CEP_INVALIDO, exception.getMessage());
+    }
+
+    @Test
     public void testBuscarCepValidoComCepNaoNumerico() {
         CepRequest cepRequest = new CepRequest("15138h26");
         BadRequestException exception = assertThrows(BadRequestException.class, () -> {

@@ -10,6 +10,6 @@ public class Constants {
     public final String SWAGGER_DESCRIPTION_TAG = "Integração com a API para a busca de Cep";
     public final String SWAGGER_TITLE_API = "CONSULTA CEP";
     public final String SWAGGER_API_DESCRIPTION_APRESENTATION = "Teste para vaga de dev Java WIPRO";
-    public final String SWAGGER_API_VERSION = "1,0,0";
+    public final String SWAGGER_API_VERSION = "1,0,1";
 
 }
