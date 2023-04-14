@@ -33,7 +33,7 @@ public class CucumberTest {
     }
 
     @Given("usuário informou um CEP inválido")
-    public void que_o_usuário_informou_um_CEP_inválido() {
+    public void oUsuárioInformouUmCEPInválido() {
         cepRequest = new CepRequest("151382-26");
     }
 
