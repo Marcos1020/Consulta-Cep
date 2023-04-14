@@ -43,12 +43,12 @@ public class CucumberTest {
     }
 
     @Then("a resposta deve ter o status {int} Ok")
-    public void a_resposta_deve_ter_o_status_200_OK() {
+    public void aRespostaDeveTerOStatus200OK() {
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
     }
 
     @Then("a resposta deve ter o status 400 Bad Request")
-    public void a_resposta_deve_ter_o_status_400_Bad_Request() {
+    public void aRespostaDeveTerOStatus400BadRequest() {
         assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
     }
 
