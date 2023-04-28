@@ -19,8 +19,8 @@ import org.springframework.stereotype.Service;
 public class CepService {
 
     private Client client;
-    protected ValorFretePorRegiao valorFretePorRegiao;
-    protected Conversoes conversoes;
+    private ValorFretePorRegiao valorFretePorRegiao;
+    private Conversoes conversoes;
 
     @Autowired
     public CepService(Client client, ValorFretePorRegiao valorFretePorRegiao, Conversoes conversoes) {
@@ -41,11 +41,11 @@ public class CepService {
             throw new BadRequestException(Constants.CEP_INVALIDO_ADICIONE_APENAS_NUMEROS);
         }
 
-        ReturnIntegrationResponse cepResponse = this.client.consultaCep(cepRequest.getCep());
-        String convertUfParaEstado = cepResponse.getUf();
+        ReturnIntegrationResponse returnIntegrationResponse = this.client.consultaCep(cepRequest.getCep());
+        String convertUfParaEstado = returnIntegrationResponse.getUf();
         double valorFrete = valorFretePorRegiao.getValorFrete(convertUfParaEstado);
 
-        CepResponse cepResponseReturn = conversoes.ConverteOsDadosRecebidosDaIntegração(cepResponse, valorFrete);
-        return cepResponseReturn;
+        CepResponse cepResponse = conversoes.ConverteOsDadosRecebidosDaIntegração(returnIntegrationResponse, valorFrete);
+        return cepResponse;
     }
 }
