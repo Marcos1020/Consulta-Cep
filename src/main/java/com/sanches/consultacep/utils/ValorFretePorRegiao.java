@@ -45,7 +45,7 @@ public class ValorFretePorRegiao {
     );
 
     public static double getValorFrete(String estadoParaCobrançaDoFrete) {
-        if (StringUtils.isEmpty(estadoParaCobrançaDoFrete)) {
+        if (estadoParaCobrançaDoFrete == null ) {
             return 0.0;
         }
         return valoresFrete.getOrDefault(estadoParaCobrançaDoFrete.toUpperCase(), 0.0);
