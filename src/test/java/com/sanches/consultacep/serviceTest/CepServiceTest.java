@@ -20,7 +20,6 @@ import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
-import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
@@ -71,7 +70,7 @@ public class CepServiceTest {
     }
 
     @Test
-    void buscarCepValido_deveRetornarCepResponseValido() throws BadRequestException {
+    void buscarCepValidoEDeveRetornarCepResponseValido() throws BadRequestException {
 
         String cepValido = "15138226";
         CepRequest cepRequest = new CepRequest();
@@ -91,11 +90,12 @@ public class CepServiceTest {
         CepResponse cepResponse = cepService.buscarCepValido(cepRequest);
 
         assertEquals(cepValido, cepResponse.getCep());
-        assertEquals("Rua Domingos Tedeschi", cepResponse.getRua());
-        assertEquals("", cepResponse.getComplemento());
-        assertEquals("Jardim Santa Cláudia", cepResponse.getBairro());
-        assertEquals("Mirassol", cepResponse.getCidade());
-        assertEquals("SP", cepResponse.getEstado());
+        assertEquals(returnIntegrationResponseMock.getLogradouro(), cepResponse.getRua());
+        assertEquals(returnIntegrationResponseMock.getComplemento(), cepResponse.getComplemento());
+        assertEquals(returnIntegrationResponseMock.getBairro(), cepResponse.getBairro());
+        assertEquals(returnIntegrationResponseMock.getLocalidade(), cepResponse.getCidade());
+        assertEquals(returnIntegrationResponseMock.getUf(), cepResponse.getEstado());
         assertEquals(valorFrete, Optional.ofNullable(cepResponse.getValorFrete()));
+        System.out.println("Retornando o log com as respostas validas: " + cepResponse);
     }
 }
