@@ -4,6 +4,7 @@ import com.sanches.consultacep.basePath.BasePath;
 import com.sanches.consultacep.controller.request.CepRequest;
 import com.sanches.consultacep.controller.response.CepResponse;
 import com.sanches.consultacep.exception.BadRequestException;
+import com.sanches.consultacep.exception.NotFoundException;
 import com.sanches.consultacep.service.CepService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,7 +29,7 @@ public class CepController {
     @PostMapping
     public ResponseEntity<?> buscaCep(
 
-            @Valid @RequestBody CepRequest cepRequest) throws BadRequestException {
+            @Valid @RequestBody CepRequest cepRequest) throws BadRequestException, NotFoundException {
 
         final CepResponse cepResponse= this.cepService.buscarCepValido(cepRequest);
         return new ResponseEntity<>(cepResponse, HttpStatus.OK);

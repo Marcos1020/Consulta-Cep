@@ -5,6 +5,7 @@ import com.sanches.consultacep.controller.request.CepRequest;
 import com.sanches.consultacep.controller.response.CepResponse;
 import com.sanches.consultacep.controller.response.ReturnIntegrationResponse;
 import com.sanches.consultacep.exception.BadRequestException;
+import com.sanches.consultacep.exception.NotFoundException;
 import com.sanches.consultacep.service.CepService;
 import com.sanches.consultacep.utils.Constants;
 import com.sanches.consultacep.utils.ValorFretePorRegiao;
@@ -70,7 +71,7 @@ public class CepServiceTest {
     }
 
     @Test
-    void buscarCepValidoEDeveRetornarCepResponseValido() throws BadRequestException {
+    void buscarCepValidoEDeveRetornarCepResponseValido() throws BadRequestException, NotFoundException {
 
         String cepValido = "15138226";
         CepRequest cepRequest = new CepRequest();

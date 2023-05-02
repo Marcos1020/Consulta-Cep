@@ -4,6 +4,7 @@ import com.sanches.consultacep.controller.CepController;
 import com.sanches.consultacep.controller.request.CepRequest;
 import com.sanches.consultacep.controller.response.CepResponse;
 import com.sanches.consultacep.exception.BadRequestException;
+import com.sanches.consultacep.exception.NotFoundException;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -38,7 +39,7 @@ public class CucumberTest {
     }
 
     @When("faço uma requisição para buscar o CEP")
-    public void buscaCep() throws BadRequestException {
+    public void buscaCep() throws BadRequestException, NotFoundException {
         responseEntity = cepController.buscaCep(cepRequest);
     }
 

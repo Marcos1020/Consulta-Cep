@@ -1,5 +1,7 @@
 package com.sanches.consultacep.utils;
 
+import com.sanches.consultacep.exception.NotFoundException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
@@ -7,6 +9,7 @@ import java.util.Map;
 
 import static java.util.Map.entry;
 @Component
+@Slf4j
 public class ValorFretePorRegiao {
 
     private static final Map<String, Double> valoresFrete = Map.ofEntries(
@@ -44,10 +47,14 @@ public class ValorFretePorRegiao {
             entry("RR", 20.83)
     );
 
-    public static double getValorFrete(String estadoParaCobrançaDoFrete) {
-        if (estadoParaCobrançaDoFrete == null ) {
-            return 0.0;
+    public static double getValorFrete(String estadoParaCobrançaDoFrete) throws NotFoundException {
+
+        try {
+            return valoresFrete.getOrDefault(estadoParaCobrançaDoFrete.toUpperCase(), 0.0);
+
+        } catch (NullPointerException exception) {
+            log.info(Constants.CEP_INEXISTENTE);
+            throw new NotFoundException(Constants.CEP_INEXISTENTE);
         }
-        return valoresFrete.getOrDefault(estadoParaCobrançaDoFrete.toUpperCase(), 0.0);
     }
 }

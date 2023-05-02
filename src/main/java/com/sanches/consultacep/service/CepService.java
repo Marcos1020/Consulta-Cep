@@ -6,6 +6,7 @@ import com.sanches.consultacep.controller.response.CepResponse;
 import com.sanches.consultacep.controller.response.ReturnIntegrationResponse;
 import com.sanches.consultacep.converções.Conversoes;
 import com.sanches.consultacep.exception.BadRequestException;
+import com.sanches.consultacep.exception.NotFoundException;
 import com.sanches.consultacep.utils.Constants;
 import com.sanches.consultacep.utils.ValorFretePorRegiao;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +30,7 @@ public class CepService {
         this.conversoes = conversoes;
     }
 
-    public CepResponse buscarCepValido(final CepRequest cepRequest) throws BadRequestException {
+    public CepResponse buscarCepValido(final CepRequest cepRequest) throws BadRequestException, NotFoundException {
 
         int caractersCep = 8;
         if (cepRequest.getCep().length() != caractersCep) {
