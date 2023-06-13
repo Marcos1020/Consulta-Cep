@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @FeignClient(name = "consulta-cep", url = "${feign.client.config.consulta-cep.url}")
-public interface  Client {
+public interface CepIntegration {
     @GetMapping(value = BasePath.BASE_PATH_INTEGRATION_URL, consumes = MediaType.APPLICATION_JSON_VALUE)
     ReturnIntegrationResponse consultaCep(
             @PathVariable("cep") String cep)throws BadRequestException;
 }
+

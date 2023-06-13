@@ -1,6 +1,6 @@
 package com.sanches.consultacep.serviceTest;
 
-import com.sanches.consultacep.clientInegration.Client;
+import com.sanches.consultacep.clientInegration.CepIntegration;
 import com.sanches.consultacep.controller.request.CepRequest;
 import com.sanches.consultacep.controller.response.CepResponse;
 import com.sanches.consultacep.controller.response.ReturnIntegrationResponse;
@@ -31,13 +31,13 @@ public class CepServiceTest {
     private ValorFretePorRegiao valorFretePorRegiao;
 
     @Mock
-    private Client client;
+    private CepIntegration client;
 
     @InjectMocks
     private CepService cepService;
 
     @Autowired
-    public CepServiceTest(ValorFretePorRegiao valorFretePorRegiao, Client client, CepService cepService) {
+    public CepServiceTest(ValorFretePorRegiao valorFretePorRegiao, CepIntegration client, CepService cepService) {
         this.valorFretePorRegiao = valorFretePorRegiao;
         this.client = client;
         this.cepService = cepService;

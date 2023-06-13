@@ -1,10 +1,9 @@
 package com.sanches.consultacep.service;
 
-import com.sanches.consultacep.clientInegration.Client;
+import com.sanches.consultacep.clientInegration.CepIntegration;
 import com.sanches.consultacep.controller.request.CepRequest;
 import com.sanches.consultacep.controller.response.CepResponse;
 import com.sanches.consultacep.controller.response.ReturnIntegrationResponse;
-import com.sanches.consultacep.converções.Conversoes;
 import com.sanches.consultacep.exception.BadRequestException;
 import com.sanches.consultacep.exception.NotFoundException;
 import com.sanches.consultacep.utils.Constants;
@@ -19,15 +18,13 @@ import org.springframework.stereotype.Service;
 @Component
 public class CepService {
 
-    private Client client;
+    private CepIntegration client;
     private ValorFretePorRegiao valorFretePorRegiao;
-    private Conversoes conversoes;
 
     @Autowired
-    public CepService(Client client, ValorFretePorRegiao valorFretePorRegiao, Conversoes conversoes) {
+    public CepService(CepIntegration client, ValorFretePorRegiao valorFretePorRegiao) {
         this.client = client;
         this.valorFretePorRegiao = valorFretePorRegiao;
-        this.conversoes = conversoes;
     }
 
     public CepResponse buscarCepValido(final CepRequest cepRequest) throws BadRequestException, NotFoundException {
@@ -46,7 +43,18 @@ public class CepService {
         String convertUfParaEstado = returnIntegrationResponse.getUf();
         double valorFrete = valorFretePorRegiao.getValorFrete(convertUfParaEstado);
 
-        CepResponse cepResponse = conversoes.ConverteOsDadosRecebidosDaIntegração(returnIntegrationResponse, valorFrete);
+        return ConverteOsDadosRecebidosDaIntegração(returnIntegrationResponse, valorFrete);
+    }
+
+    private CepResponse ConverteOsDadosRecebidosDaIntegração(ReturnIntegrationResponse cepResponseReturn, double valorFrete) {
+        CepResponse cepResponse = CepResponse.builder().build();
+        cepResponse.setCep(cepResponseReturn.getCep());
+        cepResponse.setRua(cepResponseReturn.getLogradouro());
+        cepResponse.setComplemento(cepResponseReturn.getComplemento());
+        cepResponse.setBairro(cepResponseReturn.getBairro());
+        cepResponse.setEstado(cepResponseReturn.getUf());
+        cepResponse.setCidade(cepResponseReturn.getLocalidade());
+        cepResponse.setValorFrete(valorFrete);
         return cepResponse;
     }
 }
