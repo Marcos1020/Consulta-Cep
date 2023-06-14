@@ -8,7 +8,7 @@ import com.sanches.consultacep.exception.BadRequestException;
 import com.sanches.consultacep.exception.NotFoundException;
 import com.sanches.consultacep.service.CepService;
 import com.sanches.consultacep.utils.Constants;
-import com.sanches.consultacep.utils.ValorFretePorRegiao;
+import com.sanches.consultacep.utils.ShippingValueByRegion;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -28,7 +28,7 @@ import static org.mockito.Mockito.when;
 public class CepServiceTest {
 
     @Mock
-    private ValorFretePorRegiao valorFretePorRegiao;
+    private ShippingValueByRegion valorFretePorRegiao;
 
     @Mock
     private CepIntegration client;
@@ -37,7 +37,7 @@ public class CepServiceTest {
     private CepService cepService;
 
     @Autowired
-    public CepServiceTest(ValorFretePorRegiao valorFretePorRegiao, CepIntegration client, CepService cepService) {
+    public CepServiceTest(ShippingValueByRegion valorFretePorRegiao, CepIntegration client, CepService cepService) {
         this.valorFretePorRegiao = valorFretePorRegiao;
         this.client = client;
         this.cepService = cepService;
@@ -47,7 +47,7 @@ public class CepServiceTest {
     public void testBuscarCepValidoComCepInvalido() {
         CepRequest cepRequest = new CepRequest("15138-226");
         BadRequestException exception = assertThrows(BadRequestException.class, () -> {
-            cepService.buscarCepValido(cepRequest);
+            cepService.searchValidZipCode(cepRequest);
         });
         assertEquals(Constants.CEP_INVALIDO, exception.getMessage());
     }
@@ -56,7 +56,7 @@ public class CepServiceTest {
     public void testBuscaUmCepComAQuantidadeDeCaracteresMenorQueOEsperado(){
         CepRequest cepRequest = new CepRequest("1513826");
         BadRequestException exception = assertThrows(BadRequestException.class, () -> {
-            cepService.buscarCepValido(cepRequest);
+            cepService.searchValidZipCode(cepRequest);
         });
         assertEquals(Constants.CEP_INVALIDO, exception.getMessage());
     }
@@ -65,7 +65,7 @@ public class CepServiceTest {
     public void testBuscarCepValidoComCepNaoNumerico() {
         CepRequest cepRequest = new CepRequest("15138h26");
         BadRequestException exception = assertThrows(BadRequestException.class, () -> {
-            cepService.buscarCepValido(cepRequest);
+            cepService.searchValidZipCode(cepRequest);
         });
         assertEquals(Constants.CEP_INVALIDO_ADICIONE_APENAS_NUMEROS, exception.getMessage());
     }
@@ -88,7 +88,7 @@ public class CepServiceTest {
 
         Optional<Double> valorFrete = Optional.of(7.85);
 
-        CepResponse cepResponse = cepService.buscarCepValido(cepRequest);
+        CepResponse cepResponse = cepService.searchValidZipCode(cepRequest);
 
         assertEquals(cepValido, cepResponse.getCep());
         assertEquals(returnIntegrationResponseMock.getLogradouro(), cepResponse.getRua());

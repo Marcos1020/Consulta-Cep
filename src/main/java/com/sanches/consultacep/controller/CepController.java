@@ -31,7 +31,7 @@ public class CepController {
 
             @Valid @RequestBody CepRequest cepRequest) throws BadRequestException, NotFoundException {
 
-        final CepResponse cepResponse= this.cepService.buscarCepValido(cepRequest);
+        final CepResponse cepResponse= this.cepService.searchValidZipCode(cepRequest);
         return new ResponseEntity<>(cepResponse, HttpStatus.OK);
     }
 }

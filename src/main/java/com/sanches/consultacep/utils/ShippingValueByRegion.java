@@ -3,16 +3,15 @@ package com.sanches.consultacep.utils;
 import com.sanches.consultacep.exception.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
 import java.util.Map;
 
 import static java.util.Map.entry;
 @Component
 @Slf4j
-public class ValorFretePorRegiao {
+public class ShippingValueByRegion {
 
-    private static final Map<String, Double> valoresFrete = Map.ofEntries(
+    private static final Map<String, Double> valuesShipping = Map.ofEntries(
 
             entry("SP", 7.85),
             entry("RJ", 7.85),
@@ -47,10 +46,10 @@ public class ValorFretePorRegiao {
             entry("RR", 20.83)
     );
 
-    public static double getValorFrete(String estadoParaCobrançaDoFrete) throws NotFoundException {
+    public static double getFreightValue(String statesForFreightCollection) throws NotFoundException {
 
         try {
-            return valoresFrete.getOrDefault(estadoParaCobrançaDoFrete.toUpperCase(), 0.0);
+            return valuesShipping.getOrDefault(statesForFreightCollection.toUpperCase(), 0.0);
 
         } catch (NullPointerException exception) {
             log.info(Constants.CEP_INEXISTENTE);
