@@ -9,20 +9,20 @@ import com.sanches.consultacep.service.CepService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 @RestController
 @RequestMapping(BasePath.BASE_PATH_URL)
+@Component
 public class CepController {
 
     private CepService cepService;
+
     @Autowired
-    public CepController(CepService cepService){
+    public CepController(CepService cepService) {
         this.cepService = cepService;
     }
 
@@ -31,7 +31,7 @@ public class CepController {
 
             @Valid @RequestBody CepRequest cepRequest) throws BadRequestException, NotFoundException {
 
-        final CepResponse cepResponse= this.cepService.searchValidZipCode(cepRequest);
+        final CepResponse cepResponse = this.cepService.searchValidZipCode(cepRequest);
         return new ResponseEntity<>(cepResponse, HttpStatus.OK);
     }
 }
