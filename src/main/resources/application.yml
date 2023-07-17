@@ -11,6 +11,3 @@ feign:
     config:
       consulta-cep:
         url: viacep.com.br/ws
-
-
-

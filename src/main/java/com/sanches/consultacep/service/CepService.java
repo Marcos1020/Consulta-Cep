@@ -10,12 +10,12 @@ import com.sanches.consultacep.utils.Constants;
 import com.sanches.consultacep.utils.ShippingValueByRegion;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-@Component
+@ComponentScan
 public class CepService {
 
     private CepIntegration client;
@@ -43,10 +43,10 @@ public class CepService {
         String convertUfToState = returnIntegrationResponse.getUf();
         double freightValue = valorFretePorRegiao.getFreightValue(convertUfToState);
 
-        return ConvertTheDataReceivedFromTheIntegration(returnIntegrationResponse, freightValue);
+        return convertTheDataReceivedFromTheIntegration(returnIntegrationResponse, freightValue);
     }
 
-    private CepResponse ConvertTheDataReceivedFromTheIntegration(ReturnIntegrationResponse cepResponseIntegrationReturn, double freightValue) {
+    private CepResponse convertTheDataReceivedFromTheIntegration(ReturnIntegrationResponse cepResponseIntegrationReturn, double freightValue) {
         CepResponse cepResponse = CepResponse.builder().build();
         cepResponse.setCep(cepResponseIntegrationReturn.getCep());
         cepResponse.setRua(cepResponseIntegrationReturn.getLogradouro());
