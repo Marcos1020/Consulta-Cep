@@ -1,4 +1,4 @@
-        # Consulta-Cep
+# Consulta-Cep
 
 ![consulta-cep](https://github.com/Marcos1020/Consulta-Cep/assets/83420181/52620393-99d7-4e48-b430-a8c5735fd517)
 
