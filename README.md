@@ -4,7 +4,7 @@
 
 Api criada em Java e Spring onde faz uma integração com uma Api de busca de Cep e adiciona um valor de cep para uma determinada região do Pais.
 
-Utilizando o padrão MVC, utilizando das boas práticas.
+Utilizando o padrão MVC, boas práticas de clean code, 
 
   testes de integração
 
