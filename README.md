@@ -6,13 +6,15 @@ Api criada em Java e Spring onde faz uma integração com uma Api de busca de Ce
 
 Utilizando o padrão MVC, boas práticas de clean code, 
 
-  testes de integração
+  *testes de integração
 
-  testes unitarios
+  *testes unitarios
   
-  CucumberTest
+  *CucumberTest
   
-  SWAGGER-documentation
+  *SWAGGER-documentation
+
+# Swagger
   
   URLSwagger = http://localhost:8686/swagger-ui/index.html#/cep-controller
   
