@@ -12,7 +12,7 @@ Utilizando o padrão MVC, boas práticas de clean code,
   
   *CucumberTest
   
-  *SWAGGER-documentation
+  *Swagger-documentation
 
 # Swagger
   
