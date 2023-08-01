@@ -20,3 +20,4 @@ Utilizando o padrão MVC, boas práticas de clean code,
   
 uma aplicação para simular a busca de um cep retornando os dados da rua, bairro, complemento,cidade e estado e um valor de frete já pré fixado por padrão.  
 
+# Diagrama da API![DiagramaDaAPIDeConsultaCEP](https://github.com/Marcos1020/Consulta-Cep/assets/83420181/845a1429-b7b9-4d22-8734-5db3b380aad8)
